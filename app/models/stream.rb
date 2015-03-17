@@ -2,7 +2,7 @@
 class Stream
   include Mongoid::Document
 
-  field :id, type: String
+  field :stream_identifier, type: String
   field :cover, type: String
   field :caption, type: String
   field :location, type: String
@@ -39,6 +39,6 @@ class Stream
   has_one :feed
 
   def update_stream
-  	UpdateStreamStatus.perform_async(self.id.to_s)
+  	UpdateStreamStatus.perform_async(self.stream_identifier)
   end
 end

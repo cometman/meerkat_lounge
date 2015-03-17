@@ -10,7 +10,7 @@ class Api::StreamsController < ApplicationController
   def index
     # byebug
     page = params[:page] || 0
-    number_of_streams = 30
+    number_of_streams = 10
     order_by = "watchers_count"
     direction = "DESC"
     streams = Stream.where(status: "live")
@@ -20,11 +20,8 @@ class Api::StreamsController < ApplicationController
     else
       streams = streams.page(page).per(number_of_streams).order_by(order_by + ' ' + direction)
     end
-    respond_to do |format|
-      format.json {
-        render :json => streams
-      }
-    end
+
+    render :json => streams.map(&:as_document)
   end
 
   # # Streaming API to retrieve users in a stream

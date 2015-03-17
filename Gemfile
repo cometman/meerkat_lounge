@@ -11,7 +11,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'mongoid'
+gem "bson"
+gem "json"
+gem "moped", "~> 2.0.4"#, :github => "mongoid/moped", :branch => "master"
+gem "mongoid", "~> 4.0.1"
 gem 'bson_ext'
 gem 'haml-rails'
 gem 'angular-rails-templates'

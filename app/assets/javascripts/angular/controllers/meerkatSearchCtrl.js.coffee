@@ -10,8 +10,7 @@
 # ])
 
 @MeerkatSearchCtrl = ($scope, $window, Restangular) ->
-  $scope.streams = []
-  $scope.page = 0
+  $scope.page = 1
   $scope.search = ''
   Restangular.all("api/streams").getList().then (data) ->
     console.log data
@@ -26,20 +25,27 @@
     docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
     windowBottom = windowHeight + window.pageYOffset
     if windowBottom >= (docHeight - 100)
-      $scope.page += 1
-      Restangular.all("api/streams").getList({page: $scope.page, q:$scope.search}).then (data) ->
-        if data.length > 0
-          Array.prototype.push.apply($scope.streams,data)
-          $scope.$apply
-          return
+      # Only bring in next page when the size of the array indciates we need to
+      if ($scope.streams.length / 10) == $scope.page
+        $scope.page += 1
+        Restangular.all("api/streams").getList({page: $scope.page, q:$scope.search}).then (data) ->
+          if data.length > 0
+            if $scope.streams == undefined || $scope.streams.length == 0
+              $scope.streams = data
+            else
+              Array.prototype.push.apply($scope.streams,data)
+            $scope.$apply
+            return
 
   $scope.$watch 'search', (search) ->
     if search.length > 3
+      $scope.page = 1
       Restangular.all("api/streams").getList({q: search}).then (data) ->
         $scope.streams = data
         $scope.$apply
         return
     if search.length == 0
+      $scope.page = 1
       Restangular.all("api/streams").getList().then (data) ->
         $scope.streams = data
         $scope.$apply

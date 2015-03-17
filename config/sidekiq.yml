@@ -7,6 +7,7 @@ integration:
   # :pidfile: ./tmp/pids/sidekiq.pid
   # :logfile: ./log/sidekiq.log
 production:
+  :concurrency: 20
   :pidfile: /var/app/support/pids/sidekiq.pid
   :logfile: /var/app/containerfiles/logs/sidekiq.log
 development:

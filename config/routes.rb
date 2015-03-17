@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :streams
+  resources :streams, :only => [:index]
 
   resources :feeds
 
 
 
-  namespace :api, defaults: {format: :json} do
+  namespace :api do
     get 'streams', :to => 'streams#index'
   end
 
