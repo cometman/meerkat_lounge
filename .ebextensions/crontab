@@ -1,0 +1,2 @@
+* * * * * /bin/bash -l -c 'cd /var/app/current && RAILS_ENV=production bundle exec rake job:attach_streams'
+* * * * * ( sleep 30 ; /bin/bash -l -c 'cd /var/app/current && RAILS_ENV=production bundle exec rake job:attach_streams' )
