@@ -33,16 +33,6 @@ class Stream
   has_one :feed
 
   def update_stream
-  	begin
-	  	result = RestClient.get "https://resources.meerkatapp.co/broadcasts/#{self.id}/summary"
-			parsed_summary = JSON.parse(result)
-			self.update_attributes(parsed_summary["result"])
-		rescue JSON::ParserError => e
-			logger.error "500: Bad JSON from Meerkat: [#{result}].  Error: #{e.message}"
-		rescue RestClient::ResourceNotFound => e
-			logger.error "404: StreamID summary not found: [#{stream_id}].  Error: #{e.message}"
-		rescue Mongoid::Errors => e
-			logger.error "500: Problem saving MongoDB Stream.rb model with attributes: [#{parsed_summary.to_json}]. Error: #{e.message}"
-		end
+  	UpdateStreamStatus.perform_async(self.id.to_s)
   end
 end
