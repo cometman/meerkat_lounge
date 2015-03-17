@@ -19,6 +19,12 @@ class Stream
   field :end_time, type: Integer
   field :tweet_id, type: String
   field :fans, type: Array
+  field :likes, type: String
+  field :delete, type: String
+  field :playlist, type: String
+  field :restreams, type: String
+  field :comments, type: String
+  field :watchers, type: String
 
   # Create aliases for meerkat objects. We want clean RAILS attributes not camel cased
   alias_attribute :likesCount, :likes_count

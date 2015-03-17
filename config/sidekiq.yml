@@ -1,0 +1,15 @@
+# Options here can still be overridden by cmd line args.
+# sidekiq -C config.yml
+---
+:verbose: true
+:concurrency:  10
+integration:
+  # :pidfile: ./tmp/pids/sidekiq.pid
+  # :logfile: ./log/sidekiq.log
+production:
+  :pidfile: /var/app/support/pids/sidekiq.pid
+  :logfile: /var/app/containerfiles/logs/sidekiq.log
+development:
+:queues:
+  - default
+

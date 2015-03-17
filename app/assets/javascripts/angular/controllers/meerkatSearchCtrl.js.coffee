@@ -44,4 +44,28 @@
         $scope.streams = data
         $scope.$apply
         return
+
+  # $scope.$watch 'streams', (stream) ->
+
+  #   stream_length = stream.length - 1
+  #   if stream.length > 20
+  #     videojs(stream[stream_length]._id, {
+  #       'techOrder': [ 'flash' ]
+  #       'controls': false
+  #       'autoplay': false
+  #       'preload': 'auto'
+  #       'width': 300
+  #       'height': 300
+  #     }, ->
+  #     )
+  #     .on 'mouseout', (player) ->
+  #       player.pause()
+  #       return
+  #     .on 'mouseover', (player) ->
+  #       console.log player.currentTime()
+  #       console.log player.duration()
+  #       player.currentTime player.currentTime() + player.duration()
+  #       player.play()
+  #       return
+
     

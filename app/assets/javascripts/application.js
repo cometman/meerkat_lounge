@@ -30,3 +30,5 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf";

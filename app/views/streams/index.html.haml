@@ -1,4 +1,3 @@
-
 .row{"ng-controller" => "MeerkatSearchCtrl"}
   %nav.top-bar{"data-topbar" => "", :role => "navigation"}
     %ul.title-area
@@ -14,23 +13,25 @@
     Live Streams {{ exampleValue }}
   %ul.small-block-grid-1.medium-block-grid-1.large-block-grid-3
     %li(ng-repeat="stream in streams")
-      %a(href="http://meerkatapp.co/{{stream.broadcaster.name}}/{{stream._id}}")
-        .panel
-          %h2 {{stream.caption}}
-          %img(ng-src="{{stream.cover}}")
-          .row.activity
-            %i.fi-torsos-all 
-              {{stream.watchers_count}}
-            %i.fi-star
-              {{stream.like_count || 0}}
-            %i.fi-comment
-              {{stream.comment_count || 0}}
-            %i.fi-share
-              {{stream.restream_count || 0}}
-          %ul
-            %li
-              %i.fi-torso.large 
-                {{stream.broadcaster.name}}
-            %li
-              %i.fi-marker.large 
-                {{stream.location}}
+      .panel
+        %h2 {{stream.caption}}
+         
+        %video.video-js.vjs-default-skin{:controls => "", :height => "400", "ng-src" => "{{stream.playlist}}", :poster => "{{stream.cover}}", :videojs => "", :width => "100%"}      
+          
+
+        .row.activity
+          %i.fi-torsos-all 
+            {{stream.watchers_count}}
+          %i.fi-star
+            {{stream.like_count || 0}}
+          %i.fi-comment
+            {{stream.comment_count || 0}}
+          %i.fi-share
+            {{stream.restream_count || 0}}
+        %ul
+          %li
+            %i.fi-torso.large 
+              {{stream.broadcaster.name}}
+          %li
+            %i.fi-marker.large 
+              {{stream.location}}

@@ -9,6 +9,13 @@ Rails.application.routes.draw do
     get 'streams', :to => 'streams#index'
   end
 
+  require 'sidekiq/web'
+  get "/sidekiq" => Sidekiq::Web , :anchor => false
+  post "/sidekiq" => Sidekiq::Web , :anchor => false
+  
+  root 'streams#index'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -6,9 +6,10 @@
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
     %title= content_for?(:title) ? yield(:title) : "Untitled"
-
     = stylesheet_link_tag "application"
     = javascript_include_tag "vendor/modernizr"
+    %link{:href => "//vjs.zencdn.net/4.12/video-js.css", :rel => "stylesheet"}/
+    %script{:src => "//vjs.zencdn.net/4.12/video.js"}
     = javascript_include_tag "application", 'data-turbolinks-track' => true
     = csrf_meta_tag
 

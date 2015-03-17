@@ -13,7 +13,6 @@ $redis = Redis.new(:host => "#{redis_endpoint}")
 
 Sidekiq.configure_server do |config| 
   config.redis = { :url => "redis://#{redis_endpoint}:6379"}
-  Sidekiq.options[:fetch] = Sidekiq::RateLimiter::Fetch
 end
 
 Sidekiq.configure_client do |config|
