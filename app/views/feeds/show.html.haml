@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Author:
+  = @feed.author
+%p
+  %b Thumbnail:
+  = @feed.thumbnail
+%p
+  %b Stream link:
+  = @feed.stream_link
+
+= link_to 'Edit', edit_feed_path(@feed)
+\|
+= link_to 'Back', feeds_path

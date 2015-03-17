@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: MyString
+  thumbnail: MyString
+  stream_link: MyString
+
+two:
+  author: MyString
+  thumbnail: MyString
+  stream_link: MyString
