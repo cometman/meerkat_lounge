@@ -14,8 +14,10 @@ class Feed
   	if self.interaction.present? &&
   		self.interaction.links.present?
   		# Create the stream
-  		stream_id = self.interaction.links.url[0].match(/[^\/]*$/).to_s
-  		AttachStreamWorker.perform_async(stream_id, self.id.to_s)
+      if self.interaction.links.url.count == 1
+    		stream_id = self.interaction.links.url[0].match(/[^\/]*$/).to_s
+    		AttachStreamWorker.perform_async(stream_id, self.id.to_s)
+      end
   	end
   end
 end
