@@ -1,21 +1,25 @@
 .row{"ng-controller" => "MeerkatSearchCtrl"}
   %nav.top-bar{"data-topbar" => "", :role => "navigation"}
     %ul.center
-      %img(src="/logo.png" height=50)
+      .show-for-medium-up
+        %img(src="/logo.png" height=50)
       .row
-        .small-9.columns.small-centered
+        .small-1.columns.text-right
+          .search-icon
+            .hide-for-small
+              %i.fi-magnifying-glass
+        .small-8.columns.small-centered
           %input(type='text' ng-model='search' placeholder='@, # or Location')
       .row
-        .small-6.columns
+        .small-4.columns
           %p.small-text-center
             %a{:href => "http://socialrest.com", target: "_blank"}a project by @socialrest
-        .small-6.columns
+        .small-4.columns
           %p.small-text-center
             %a{:href => "http://twitter.com/socialrest", target: "_blank"}feature, bug, comment?
-  %h1.text-center
-    Meerkat Lounge
-  %h3.text-center
-    Find, browse and watch live Meerkat streams.
+  %section.main
+    %h1.text-left.name
+      %i.fi-results
   %ul.small-block-grid-1.medium-block-grid-1.large-block-grid-3
     %li(ng-repeat="stream in streams")
       %a(href="http://meerkatapp.co/{{stream.broadcaster.name}}/{{stream.stream_identifier}}" target="_blank")

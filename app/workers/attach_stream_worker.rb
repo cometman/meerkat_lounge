@@ -37,15 +37,16 @@ class AttachStreamWorker
 			
 		rescue JSON::ParserError => e
 			logger.error "500: Bad JSON from Meerkat: [#{result}].  Error: #{e.message}"
+			feed.update_status = false
+			feed.save
 		rescue RestClient::ResourceNotFound => e
 			logger.error "404: StreamID summary not found: [#{stream_id}].  Error: #{e.message}"
+			feed.update_status = false
+			feed.save
 		rescue => e
-			if parsed_summary["error"] == "doesn't exist"
-				feed.update_status = false
-				feed.save
-			else
-				logger.error "500: Problem saving MongoDB Stream.rb model with attributes: [#{parsed_summary.to_json}]. Error: #{e.message}"
-			end
+			feed.update_status = false
+			feed.save
+			logger.error "500: Problem saving MongoDB Stream.rb model with attributes: [#{parsed_summary.to_json}]. Error: #{e.message}"
 		end
   end
 end
