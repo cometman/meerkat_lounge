@@ -3,7 +3,7 @@ namespace :job do
   desc "Attach new feeds to stream task every 30 seconds"
   task :attach_streams => :environment do
     puts "Beginning attaching feeds"
-    Feed.where(processed: false).each do |feed|
+    Feed.any_of({processed: false},{processed: {"$exists" => false}}).each do |feed|
       feed.attach_to_stream
     end
   end
