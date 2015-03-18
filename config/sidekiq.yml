@@ -9,7 +9,7 @@ integration:
 production:
   :concurrency: 20
   :pidfile: /var/app/support/pids/sidekiq.pid
-  :logfile: /var/app/containerfiles/logs/sidekiq.log
+  :logfile: /var/app/support/logs/sidekiq.log
 development:
 :queues:
   - default
