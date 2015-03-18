@@ -12,6 +12,7 @@
     %script{:src => "//vjs.zencdn.net/4.12/video.js"}
     = javascript_include_tag "application", 'data-turbolinks-track' => true
     = csrf_meta_tag
+    = analytics_init if Rails.env.production?
 
   %body{"ng-app" => "app.meerkatSearch"}
     %section
