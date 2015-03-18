@@ -1,2 +1,3 @@
 * * * * * /bin/bash -l -c 'cd /var/app/current && RAILS_ENV=production bundle exec rake job:attach_streams'
+0,10,20,30,40,50 * * * * /bin/bash -l -c 'cd /var/app/current && ./script/sidekiq_start.sh'
 * * * * * ( sleep 30 ; /bin/bash -l -c 'cd /var/app/current && RAILS_ENV=production bundle exec rake job:attach_streams' )
