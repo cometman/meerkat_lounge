@@ -1,18 +1,13 @@
 .row{"ng-controller" => "MeerkatSearchCtrl"}
   %nav.top-bar{"data-topbar" => "", :role => "navigation"}
-    %ul.title-area
-      %li.name
-        %h1
-          %a{:href => "#"} Search
-      / Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
-
     %ul.center
-      .small-8.columns
-        %input(type='text' ng-model='search' placeholder='@, # or Location')
-      .small-3.columns
-        %li.name
-          %p.small
-            %a{:href => "https://twitter.com/clay_selby"} by @clay_selby
+      .row
+        .small-9.columns.small-centered
+          %input(type='text' ng-model='search' placeholder='@, # or Location')
+      .row
+        .small-12.columns
+          %p.small-text-center
+            %a{:href => "https://twitter.com/clay_selby"}a project by @clay_selby
             
   %h1.text-center
     Meerkat Lounge
