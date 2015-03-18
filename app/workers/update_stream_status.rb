@@ -14,7 +14,7 @@ class UpdateStreamStatus
 			stream.update_attributes(parsed_summary["result"])
 			stream.save
 			if stream.status == "live"
-				UpdateStreamStatus.perform_in(30.seconds, stream.stream_identifier)
+				UpdateStreamStatus.perform_in(3.minutes, stream.stream_identifier)
 			end
 		rescue JSON::ParserError => e
 			logger.error "500: Bad JSON from Meerkat: [#{result}].  Error: #{e.message}"
