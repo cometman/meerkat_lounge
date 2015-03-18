@@ -31,7 +31,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
-
+# Fix minifer bug
+gem 'ngannotate-rails'
 
 gem 'rest-client'
 # Pagination
