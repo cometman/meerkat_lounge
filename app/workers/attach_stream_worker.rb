@@ -6,6 +6,8 @@ class AttachStreamWorker
 
   def perform(stream_id, feed_id)
   	feed = Feed.find(feed_id)
+  	feed.processed = true
+  	feed.save
   	begin
 			result = RestClient.get "https://resources.meerkatapp.co/broadcasts/#{stream_id}/summary"
 			parsed_summary = JSON.parse(result)

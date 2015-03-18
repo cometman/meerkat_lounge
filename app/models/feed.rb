@@ -2,6 +2,7 @@
 class Feed
   include Mongoid::Document
   # Update status is moved to false once the stream has ended
+  field :processed, type: Boolean, default: false
   field :update_status, type: Boolean, default: true
   embeds_one :interaction
   belongs_to :stream
