@@ -38,7 +38,7 @@
             return
 
   $scope.$watch 'search', (search) ->
-    if search.length > 3
+    if search.length > 2
       $scope.page = 1
       Restangular.all("api/streams").getList({q: search}).then (data) ->
         $scope.streams = data

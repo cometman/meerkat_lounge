@@ -4,6 +4,20 @@
     %meta{ :charset => "utf-8" }
 
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+    %title Meerkat Lounge
+    %meta{:content => "Find, Browse and Stream Live Meerkat.", :name => "description"}/
+    %meta{:content => "Find, Browse and Stream Live Meerkat", :name => "twitter:card"}
+    %meta{:content => "@clay_selby", :name => "twitter:site"}
+    %meta{:content => "Meerkat Lounge", :name => "twitter:title"}
+    %meta{:content => "Find, Browse and Stream Live Meerkat", :name => "twitter:description"}
+    %meta{:content => "@clay_selby", :name => "twitter:creator"}
+    %meta{:content => "http://www.meerkatlounge.com/logo.png", :name => "twitter:image"}
+    %meta{:content => "Meerkat Lounge", :property => "og:title"}/
+    %meta{:content => "article", :property => "og:type"}/
+    %meta{:content => "http://www.meerkatlounge.com/", :property => "og:url"}/
+    %meta{:content => "http://meerkatlounge.com/logo.png", :property => "og:image"}/
+    %meta{:content => "Find, Browse and Stream Live Meerkat", :property => "og:description"}/
+    %meta{:content => "Meerkat Lounge", :property => "og:site_name"}/
 
     %title= content_for?(:title) ? yield(:title) : "Meerkat Lounge"
     = stylesheet_link_tag "application"
