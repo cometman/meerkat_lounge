@@ -11,9 +11,9 @@ class Api::StreamsController < ApplicationController
     # byebug
     page = params[:page] || 0
     number_of_streams = 10
-    order_by = "watchers_count"
+    order_by = "created_at"
     direction = "DESC"
-    streams = Stream.where(status: "live")
+    streams = Stream.all#where(status: "live")
     search = params[:q]
     if search.present? && search != ""
       streams = streams.any_of({"broadcaster.name" => /#{search}/i}, {"caption" => /#{search}/i}, {"influencers" => /#{search}/i}, {"location" => /#{search}/i}).page(page).per(number_of_streams).order_by(order_by + ' ' + direction)
