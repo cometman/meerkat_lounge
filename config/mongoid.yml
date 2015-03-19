@@ -19,6 +19,7 @@ integration:
       password: password2014
       hosts:
         - c996.candidate.20.mongolayer.com:10996
+        - c870.candidate.16.mongolayer.com:10870
       options:
         # In the test environment we lower the retries and retry interval to
         # low amounts for fast failures.
@@ -28,16 +29,6 @@ integration:
         timeout: 15
         max_retries: 5
         refresh_interval: 10
-    replica_set:
-      # This configuration is a 3 node replica set.
-      hosts:
-        - c870.candidate.16.mongolayer.com:10870
-      database: integration
-      # We can set session specific options, like reads executing
-      # on secondary nodes, and defaulting the session to safe mode.
-      options:
-        consistency: :eventual
-        safe: true
 production:
   sessions:
     default:

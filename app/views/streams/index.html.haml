@@ -20,15 +20,15 @@
   %section.main
     %h1.text-left.name
       %i.fi-results
-  %section
-    %p.text-center
-      3/18/2015 - Twitter is having some issues. 
-      %br
-      Maintenance in progress.
-  %ul.small-block-grid-1.medium-block-grid-1.large-block-grid-3
+      %ul.small-block-grid-1.medium-block-grid-1.large-block-grid-3
+      .row
+        .small-12.columns#logotop
+          .small-11.columns
+            %img(src="lounge.png" width="50px") 
+            Meerkat Lounge
     %li(ng-repeat="stream in streams")
       %a(href="http://meerkatapp.co/{{stream.broadcaster.name}}/{{stream.stream_identifier}}" target="_blank")
-        .panel
+        .panel.small-12.small-centered.columns
           %h2 {{stream.caption}}
           %img(ng-src="{{stream.cover}}")
           .row.activity

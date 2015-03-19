@@ -45,3 +45,23 @@ nav {
 		margin-left: 5px;
 	}
 }
+
+#logotop {
+	color: #333333;
+	font-size: 25px;
+	font-weight: bold;
+	font-family: verdana, arial, helvetica, sans-serif
+	img {
+	  float:right!important;
+	}
+}
+
+.panel {
+	height: 480px;
+	max-width: 600px;
+	img {
+		border: black;
+		border-width: 1px;
+		border-style: solid;
+	}
+}

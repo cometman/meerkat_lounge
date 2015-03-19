@@ -12,11 +12,11 @@
 @MeerkatSearchCtrl = ($scope, $window, Restangular) ->
   $scope.page = 1
   $scope.search = ''
+  $scope.allowRefresh = true
   Restangular.all("api/streams").getList().then (data) ->
     console.log data
     $scope.streams = data
     return
-  console.log 'MeerkatSearchCtrl wwow'
 
   angular.element($window).bind 'scroll', ->
     windowHeight = if 'innerHeight' in window then window.innerHeight else document.documentElement.offsetHeight
@@ -24,6 +24,27 @@
     html = document.documentElement
     docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
     windowBottom = windowHeight + window.pageYOffset
+    # If user pulls all the way to the top, refresh the list
+    if window.pageYOffset <= -5 && $scope.allowRefresh
+      $scope.allowRefresh = false
+      Restangular.all("api/streams").getList().then (data) ->
+        if data.length > 0
+          if $scope.streams == undefined || $scope.streams.length == 0
+            $scope.streams = data
+          else
+            # Make sure the data isn't already added
+            # Loop through new data in reverse (newest will be at the front of our result) and compare to existing
+            for d in data.reverse()
+              match = false
+              for o in $scope.streams
+                if o.stream_identifier == d.stream_identifier
+                  match = true
+                  break
+              if match == false
+                $scope.streams.unshift(d)
+          $scope.$apply
+        $scope.allowRefresh = true
+        return
     if windowBottom >= (docHeight - 100)
       # Only bring in next page when the size of the array indciates we need to
       if ($scope.streams.length / 10) == $scope.page
