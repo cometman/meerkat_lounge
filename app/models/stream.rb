@@ -1,6 +1,7 @@
 # Stream is the actual Meerkat Object with the attached Tweet
 class Stream
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :stream_identifier, type: String
   field :cover, type: String
