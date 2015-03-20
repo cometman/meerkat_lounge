@@ -23,8 +23,8 @@
   %section.main
     %ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3
     
-      %li.small-centered(ng-repeat="stream in streams" last-repeat)
-        %video.video-js.vjs-default-skin{:id => "{{stream.stream_identifier}}", :autoplay => false, "data-setup" => '{ "techOrder": ["flash"] }', :controls => true, :height => "320", :poster => "{{stream.cover}}", :preload => "none", :width => "320"}
+      %li.small-centered(ng-repeat="stream in streams")
+        %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["flash"] }', :controls => true, :height => "320", :poster => "{{stream.cover}}", :preload => "none", :width => "320"}
           %source{:src => "{{stream.playlist | trusted}}", :type => "video/mp4"}
 
 

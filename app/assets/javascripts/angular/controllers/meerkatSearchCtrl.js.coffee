@@ -18,12 +18,13 @@
   $scope.allowRefresh = true
   $scope.streams = null
 
-  $scope.options = {
-        file: "pathToMyVideo/myvideo.mp4",
-        image: "pathToMyImage/image.jpg",
-        height: 360,
-        width: 640
-    };
+  $scope.setId = (id) ->
+    setTimeout (->
+      videojs(id)
+      return
+    ), 5000
+    return id
+
   Restangular.all("api/streams").getList().then (data) ->
     console.log data
     $scope.streams = data
