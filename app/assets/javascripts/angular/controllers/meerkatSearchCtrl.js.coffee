@@ -9,10 +9,19 @@
 
 # ])
 
-@MeerkatSearchCtrl = ($scope, $window, Restangular) ->
+@meerkatSearchCtrl = ($scope, $window, Restangular) ->
+  videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf"
+  # videojs.options.techOrder = ["hls","flash"]
   $scope.page = 1
   $scope.search = ''
   $scope.allowRefresh = true
+
+  $scope.options = {
+        file: "pathToMyVideo/myvideo.mp4",
+        image: "pathToMyImage/image.jpg",
+        height: 360,
+        width: 640
+    };
   Restangular.all("api/streams").getList().then (data) ->
     console.log data
     $scope.streams = data

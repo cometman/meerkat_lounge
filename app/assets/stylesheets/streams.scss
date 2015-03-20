@@ -22,6 +22,7 @@
 section {
 	.main {
 		margin: 40px;
+		padding-top: 65px;
 	}
 }
 
@@ -32,6 +33,7 @@ section {
 }
 
 nav {
+	z-index: 1;
 	input {
 		margin: 10px !important;
 	}

@@ -16,9 +16,9 @@
 //= require angular-rails-templates
 
 //= require_tree ./angular/modules
-//= require_tree ./angular/directives
 //= require_tree ./angular/controllers
 //= require_tree ./angular/lib
+
 //= require angular/app
 
 //= require foundation
@@ -27,4 +27,3 @@
 
 $(function(){ $(document).foundation(); });
 
-videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf";
