@@ -10,11 +10,13 @@
 # ])
 
 @meerkatSearchCtrl = ($scope, $window, Restangular) ->
-  videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf"
+  videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf" 
+  
   # videojs.options.techOrder = ["hls","flash"]
   $scope.page = 1
   $scope.search = ''
   $scope.allowRefresh = true
+  $scope.streams = null
 
   $scope.options = {
         file: "pathToMyVideo/myvideo.mp4",
@@ -80,8 +82,6 @@
         $scope.streams = data
         $scope.$apply
         return
-
-  # $scope.$watch 'streams', (stream) ->
 
   #   stream_length = stream.length - 1
   #   if stream.length > 20
