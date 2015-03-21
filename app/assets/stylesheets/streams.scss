@@ -33,7 +33,7 @@ section {
 }
 
 nav {
-	z-index: 1;
+	z-index: 100;
 	input {
 		margin: 10px !important;
 	}
@@ -61,7 +61,13 @@ nav {
 .panel {
 	z-index: -1;
 	height: auto;
-	max-width: 600px;
+	max-width: 450px;
+	i {
+		font-size: 32px!important;
+	}
+	.fi-social-twitter {
+		color: #4090ff!important;
+	}
 	img {
 		border: black;
 		border-width: 1px;

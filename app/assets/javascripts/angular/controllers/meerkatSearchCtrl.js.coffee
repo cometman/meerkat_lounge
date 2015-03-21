@@ -22,7 +22,7 @@
     setTimeout (->
       videojs(id)
       return
-    ), 5000
+    ), 2000
     return id
 
   Restangular.all("api/streams").getList().then (data) ->
@@ -59,7 +59,7 @@
         return
     if windowBottom >= (docHeight - 100)
       # Only bring in next page when the size of the array indciates we need to
-      if ($scope.streams.length / 10) == $scope.page
+      if ($scope.streams.length / 4) == $scope.page
         $scope.page += 1
         Restangular.all("api/streams").getList({page: $scope.page, q:$scope.search}).then (data) ->
           if data.length > 0

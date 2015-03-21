@@ -21,11 +21,24 @@
           %p.small-text-center
             %a{:href => "http://twitter.com/socialrest", target: "_blank"}feature, bug, comment?
   %section.main
-    %ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3
-    
+    %ul.small-block-grid-1.medium-block-grid-1.large-block-grid-2
       %li.small-centered(ng-repeat="stream in streams")
-        %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["flash"] }', :controls => true, :height => "320", :poster => "{{stream.cover}}", :preload => "none", :width => "320"}
-          %source{:src => "{{stream.playlist | trusted}}", :type => "video/mp4"}
+        .panel.small-centered.text-left
+          %h3 {{stream.caption}}     
+          .row
+            .small-8.columns
+              %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["flash"] }', :controls => true, :height => "320", :poster => "{{stream.cover}}", :preload => "none", :width => "320"}
+                %source{:src => "{{stream.playlist | trusted}}", :type => "video/mp4"}
+            .small-3.columns
+              %a(href="http://twitter.com/{{stream.broadcaster.name}}" target="_blank")
+                %i.fi-social-twitter
+          .row
+            .small-6.columns
+              %h4
+                @{{stream.broadcaster.name}}     
+            .small-6.columns
+              %i.fi-torsos-all
+                {{stream.watchers_count}}
 
 
  

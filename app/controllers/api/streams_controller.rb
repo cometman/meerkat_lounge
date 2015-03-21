@@ -10,7 +10,7 @@ class Api::StreamsController < ApplicationController
   def index
     # byebug
     page = params[:page] || 0
-    number_of_streams = 10
+    number_of_streams = 4
     order_by = "created_at"
     direction = "DESC"
     streams = Stream.all#where(status: "live")
