@@ -27,7 +27,7 @@
           %h3 {{stream.caption}}     
           .row
             .small-8.columns
-              %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["flash","hls"] }', :controls => true, :height => "320", :poster => "{{stream.cover}}", :preload => "none", :width => "320"}
+              %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["flash"] }', :controls => true, :height => "320", :poster => "{{stream.cover}}", :preload => "none", :width => "320"}
                 %source{:src => "{{stream.playlist | trusted}}", :type => "video/mp4"}
             .small-3.columns
               %a(href="http://twitter.com/{{stream.broadcaster.name}}" target="_blank")
@@ -43,7 +43,7 @@
           %h3 {{stream.caption}}     
           .row
             .small-8.columns
-              %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["flash","hls"] }', :controls => true, :height => "320", :poster => "{{stream.cover}}", :preload => "none", :width => "320"}
+              %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["hls", "flash"] }', :controls => true, :height => "320", :poster => "{{stream.cover}}", :preload => "none", :width => "320"}
                 %source{:src => "{{stream.playlist | trusted}}", :type => "video/mp4"}
             .small-3.columns
               %a(href="http://twitter.com/{{stream.broadcaster.name}}" target="_blank")
