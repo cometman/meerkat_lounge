@@ -19,12 +19,13 @@
   $scope.streams = null
 
   $scope.setId = (id) ->
-    setTimeout (->
-      videojs(id)
-      return
-    ), 2000
+    unless /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      setTimeout (->
+        videojs(id)
+        return
+      ), 2000
+      return id
     return id
-
   # Check every 500ms to see if ID is set, once it is we can
 
   Restangular.all("api/streams").getList().then (data) ->
