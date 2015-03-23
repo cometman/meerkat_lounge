@@ -19,6 +19,24 @@
   $scope.streams = null
 
   $scope.setId = (id) ->
+
+    #videojs(id).ready ->
+    ##  videoPlayer = this
+    #  videoPlayer.on 'error', ->
+    #    # error event listener
+    ##    # dispose the old player and its HTML
+    #   videoPlayer.dispose()
+    #    # re-add the <video> element to the container
+    #    jQuery('.video-container').append '<video id="' + id + '" controls autoplay class="video-js vjs-default-skin" preload="auto" data-setup="{}">' + '<source src="video.mp4" type="video/mp4" /></video>'
+    ##    # force Flash as the only playback option
+    #    videojs(id, 'techOrder': [ 'flash' ]).ready ->
+    #      videoPlayer = this
+    #      return
+    #    return
+    #  return
+
+
+
     unless /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       setTimeout (->
         videojs(id)
