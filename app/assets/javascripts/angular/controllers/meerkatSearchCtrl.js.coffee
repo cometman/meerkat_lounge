@@ -25,6 +25,8 @@
     ), 2000
     return id
 
+  # Check every 500ms to see if ID is set, once it is we can
+
   Restangular.all("api/streams").getList().then (data) ->
     console.log data
     $scope.streams = data

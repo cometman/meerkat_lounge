@@ -40,7 +40,7 @@
 
           .content   
             .row
-              %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["flash"] }', :controls => true, :height => "255", :poster => "{{stream.cover}}", :preload => "none", :width => "100%"}
+              %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["hls","flash"] }', :controls => true, :height => "255", :poster => "{{stream.cover}}", :preload => "none", :width => "100%"}
                 %source{:src => "{{stream.playlist | trusted}}", :type => "video/mp4"}
 
             .row.footer
