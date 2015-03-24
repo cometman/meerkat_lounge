@@ -34,7 +34,7 @@ class AttachStreamWorker
 			else
 				feed.stream.save
 				feed.save
-				UpdateStreamStatus.perform_async(stream_identifier)
+				#UpdateStreamStatus.perform_async(stream_identifier)
 			end
 			
 		rescue JSON::ParserError => e
