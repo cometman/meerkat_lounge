@@ -2,9 +2,9 @@
 # Setup Redis Server
 redis_endpoint = nil
 if Rails.env.production?
-	redis_endpoint = "sr-redis-prod.nzhcsh.0001.use1.cache.amazonaws.com"
+	redis_endpoint = "meerkat-lounge-001.nzhcsh.0001.use1.cache.amazonaws.com"
 elsif Rails.env.integration? && ENV['EB_CONFIG_APP_CURRENT'].present?
-	redis_endpoint = "sr-redis-test.nzhcsh.0001.use1.cache.amazonaws.com"
+	redis_endpoint = "meerkat-lounge-001.nzhcsh.0001.use1.cache.amazonaws.com"
 else
 	redis_endpoint = "127.0.0.1"
 end
