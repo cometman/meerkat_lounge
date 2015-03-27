@@ -20,6 +20,7 @@
     $scope.allowRefresh = true
     $scope.streams = null
     $scope.searchstring = ''
+    $scope.typeSelection = 'all'
 
     $scope.streamClick = (event, stream) ->
       console.log stream

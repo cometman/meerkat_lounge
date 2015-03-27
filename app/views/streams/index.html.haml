@@ -16,14 +16,22 @@
      
            
   %section.main
+    .top.text-center
+      %ul.tag
+        %li.alltype.tag(ng-class="typeSelection == 'all' ? 'selected' : ''" ng-click="typeSelection = 'all'")
+          all
+        %li.meerkattype.tag(ng-class="typeSelection == 'meerkat' ? 'selected' : ''" ng-click="typeSelection = 'meerkat'")
+          meerkat
+        %li.periscopetype.tag(ng-class="typeSelection == 'periscope' ? 'selected' : ''" ng-click="typeSelection = 'periscope'")
+          periscope
     %ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4
       %li.small-centered(ng-repeat="stream in streams")
         .panel.small-centered.text-left
           .head(ng-class="stream.stream_type == 'meerkat' ? 'meerkat' : 'periscope'")
-            %p
+            .name
               {{'@' + stream.broadcaster.name}}
-            .twicon
-              %a(href="http://twitter.com/{{stream.broadcaster.name}}" target="_blank")
+              .twicon
+                %a(href="http://twitter.com/{{stream.broadcaster.name}}" target="_blank")
                 %i.fi-social-twitter 
           .profile
             .image

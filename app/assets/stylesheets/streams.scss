@@ -10,6 +10,36 @@
 	line-height: 1.12;
 }
 
+.top {
+	margin-top: 20px;
+	margin-bottom: 20px;
+
+	.tag {
+		display: inline;
+		heigth: 20px;
+		margin: 5px;
+	  font-size: 22px;
+	  padding: 5px;
+	  border-radius: 5px;
+
+	 	.selected {
+			border-style:solid;
+		  border-color: black;
+		  border-width: 2px;
+		}
+	  .alltype {
+			background-color:white;
+		}
+
+		.meerkattype {
+			background-color: #ffe200;
+		}
+		.periscopetype {
+			background-color: #54a2d8;
+		}
+	}
+}
+
 .comment {
 	text-align: center;
 }
@@ -38,6 +68,9 @@
   }
 }
 .panel {
+	.name {
+		padding: 5px;
+	}
 	color: black!important;
 	border-style: none!important;
 	z-index: -1;
@@ -65,16 +98,30 @@
 	}
 	padding: 0px;
 	background-color: white;
+
+	.twicon {
+	  float: right;
+	  padding-left: 2px;
+	  padding-right: 5px;
+	}
+
 	color: white!important;
 	.meerkat {
 		color: black;
 		background-color: #ffe200;
 		font-weight: 700;
+		.fi-social-twitter {
+			color: #457a83!important;
+		}
 	}
+
 	.periscope {
 		color: white;	
 		background-color: #54a2d8;
 		font-weight: 700;
+		.fi-social-twitter {
+			color: white!important;
+		}
 	}
 	.head {
 		
@@ -94,14 +141,6 @@
 		  overflow: hidden;
 		  text-overflow: ellipsis;
 		  width: 80%;
-		}
-		.twicon {
-		  float: right;
-		  padding-left: 2px;
-		  padding-right: 5px;
-		  .fi-social-twitter {
-				color: white!important;
-			}
 		}
 		i {
 			font-size: 22px;
