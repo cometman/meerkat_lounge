@@ -1,5 +1,5 @@
 # Analytics Job
-class AttachStreamWorker
+class s
   include Sidekiq::Worker
   
   sidekiq_options :retry => false
