@@ -1,5 +1,5 @@
 # Analytics Job
-class s
+class AttachStreamWorker
   include Sidekiq::Worker
   
   sidekiq_options :retry => false
@@ -69,22 +69,22 @@ class s
 			result = RestClient.get "https://api.periscope.tv/api/v2/getAccessPublic?token=#{stream_id}"
 			parsed_summary = JSON.parse(result)
 			playlist = parsed_summary["his_url"]
-
-			return if Stream.where(stream_identifier: stream_identifier).first.present?
+			return if Stream.where(stream_identifier: stream_id).first.present?
 			# Remove id before the creation because we use Mongo ID's instead
 			feed.stream = Stream.create(stream_type: "periscope",
 				stream_identifier: stream_id,
-				cover: feed.links.meta.opengraph[0].image,
-				caption: feed.links.meta.opengraph[0].description,
+				cover: feed.interaction.links[:meta][:opengraph][0][:image].gsub("&amp;", "&"),
+				caption: feed.interaction.links[:meta][:opengraph][0][:description],
 				playlist: playlist)
-			feed.stream.broadcaster.build
-			feed.stream.broadcaster.identifier = parsed_summary["publisher"]
-			feed.stream.broadcaster.name = feed.interaction.author.username
-			feed.stream.broadcaster.display_name = feed.interaction.author.name
-			feed.stream.broadcaster.profile = feed.interaction.author.link
-			feed.stream.broadcaster.image = feed.interaction.author.avatar
-			feed.stream.broadcaster.save
 			feed.save
+			broadcaster= Broadcaster.new(stream: feed.stream)
+			broadcaster.identifier = parsed_summary["publisher"]
+			broadcaster.name = feed.interaction[:interaction][:author][:username]
+			broadcaster.display_name = feed.interaction[:interaction][:author][:name]
+			broadcaster.profile = feed.interaction[:interaction][:author][:link]
+			broadcaster.image = feed.interaction[:interaction][:author][:avatar]
+			broadcaster.save
+			
 		rescue JSON::ParserError => e
 			logger.error "500: Bad JSON from Periscope: [#{result}].  Error: #{e.message}"
 			feed.update_status = false
