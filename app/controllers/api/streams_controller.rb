@@ -20,7 +20,7 @@ class Api::StreamsController < ApplicationController
     else
       streams = streams.page(page).per(number_of_streams).order_by(order_by + ' ' + direction)
     end
-
+    
     render :json => streams.map(&:as_document)
   end
 

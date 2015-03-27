@@ -3,6 +3,8 @@ class Stream
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  #meerkat or periscope
+  field :stream_type, type: String
   field :stream_identifier, type: String
   field :cover, type: String
   field :caption, type: String

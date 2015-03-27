@@ -19,7 +19,7 @@
     %ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4
       %li.small-centered(ng-repeat="stream in streams")
         .panel.small-centered.text-left
-          .head
+          .head(ng-class="stream.stream_type == 'meerkat' ? 'meerkat' : 'periscope'")
             %p
               {{'@' + stream.broadcaster.name}}
             .twicon
@@ -33,10 +33,10 @@
 
           .content   
             .row
-              %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["hls","flash"] }', :controls => true, :height => "255", :poster => "{{stream.cover}}", :preload => "none", :width => "100%"}
-                %source{:src => "{{stream.playlist | trusted}}", :type => "video/mp4", :onclick => "console.log('hi');"}
+              .innerContainer(ng-click="streamClick($event, stream)")
+                %img(src="{{stream.cover}}" height=255 width="100%")
           %a(href="http://meerkatapp.co/{{stream.broadcaster.name}}" target="_blank")
-            .follow
+            .follow(ng-class="stream.stream_type == 'meerkat' ? 'meerkat' : 'periscope'")
               Follow
           .footer
             .location

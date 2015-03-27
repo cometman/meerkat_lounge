@@ -66,13 +66,24 @@
 	padding: 0px;
 	background-color: white;
 	color: white!important;
-	.head {
+	.meerkat {
+		color: black;
+		background-color: #ffe200;
+		font-weight: 700;
+	}
+	.periscope {
+		color: white;	
 		background-color: #54a2d8;
+		font-weight: 700;
+	}
+	.head {
+		
+		font-weight: 700;
+		color: #457a83;	
 		padding-top: 2px;
 		height: 30px;
-		color: #457a83;	  
+		
 		p {
-			color: white;
 			text-align: left;
 			font-weight: 100;
 			height: 30px;
@@ -101,7 +112,6 @@
   	padding-left: 15px;
 	}
 	.follow {
-	  background-color: #ffe200;
 		color: black;
 		font-weight: 700;
 		text-align: center;

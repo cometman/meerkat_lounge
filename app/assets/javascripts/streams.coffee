@@ -18,7 +18,7 @@ angular.element(document).ready ->
 	$(document).keydown (e) ->
 		console.log angular.element(".main").scope().search
 		angular.element(".main").scope().recent_key_pressed = true
-		if $("#mainsearch").css('display') == "none"
+		if $("#mainsearch").css('display') == "none" && e.metaKey == false
 			is_showing = true
 			$(".main").css('-webkit-filter', "blur(3px)")
 			$(".main").css('-moz-filter', "blur(3px)")
@@ -33,12 +33,13 @@ angular.element(document).ready ->
 			$(".main").removeAttr('style')
 			$("section").removeClass('stop-scrolling')
 			return
-		console.log e
-		$("#mainsearch").focus()
-		setTimeout ( ->
-			angular.element(".main").scope().recent_key_pressed = false
-			startRemove()
-		), 3000
+		if is_showing == true
+			console.log e
+			$("#mainsearch").focus()
+			setTimeout ( ->
+				angular.element(".main").scope().recent_key_pressed = false
+				startRemove()
+			), 3000
 		return
 
 	
