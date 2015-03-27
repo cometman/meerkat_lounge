@@ -1,56 +1,59 @@
 
-
-
-.row{"ng-controller" => "meerkatSearchCtrl"}
+.row{"ng-controller" => "meerkatSearchCtrl", "ng-keyup" => "keyup($event)"}
   %nav.top-bar{"data-topbar" => "", :role => "navigation"}
-    %ul.center
-      .show-for-medium-up
+    .center
+      .show-for-medium-up.tinylogo
         %img(src="/logo.png" height=50)
-      .row
-        .small-1.columns.text-right
-          .search-icon
-            .hide-for-small
-              %i.fi-magnifying-glass
-        .small-8.columns.small-centered
-          %input(type='text' ng-model='search' placeholder='@, # or Location')
-      .row
-        .small-5.columns
+      .title
+        Meerkat Lounge
+        .credit
           %p.small-text-center
-            %a{:href => "http://socialrest.com", target: "_blank"}a project by @socialrest
-        .small-5.columns
+            %a{:href => "http://socialrest.com", target: "_blank"}by @socialrest    
+        .comment
           %p.small-text-center
-            %a{:href => "http://twitter.com/socialrest", target: "_blank"}feature, bug, comment?
+            search and browse live streams.    
+      
+     
+           
   %section.main
-    .title
-      Meerkat Lounge
-    %ul.small-block-grid-1.medium-block-grid-1.large-block-grid-2
+    %ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4
       %li.small-centered(ng-repeat="stream in streams")
         .panel.small-centered.text-left
           .head
             %p
-              {{stream.caption}}
+              {{'@' + stream.broadcaster.name}}
             .twicon
               %a(href="http://twitter.com/{{stream.broadcaster.name}}" target="_blank")
                 %i.fi-social-twitter 
           .profile
-            .small-4.columns
+            .image
               %img(ng-src="{{stream.broadcaster.image}}")
-            .small-8.columns
-              {{stream.broadcaster.name}}
+            .caption
+              {{stream.caption}}
 
           .content   
             .row
               %video.video-js.vjs-default-skin{:id => "{{setId(stream.stream_identifier)}}", :autoplay => false, "data-setup" => '{ "techOrder": ["hls","flash"] }', :controls => true, :height => "255", :poster => "{{stream.cover}}", :preload => "none", :width => "100%"}
-                %source{:src => "{{stream.playlist | trusted}}", :type => "video/mp4"}
+                %source{:src => "{{stream.playlist | trusted}}", :type => "video/mp4", :onclick => "console.log('hi');"}
+          %a(href="http://meerkatapp.co/{{stream.broadcaster.name}}" target="_blank")
+            .follow
+              Follow
+          .footer
+            .location
+              {{stream.location}}    
+            .activity
+              %i.fi-torsos-all
+                {{stream.watchers_count}}
+              %i.fi-comment
+                {{stream.comments_count || 0}}
+              %i.fi-heart
+                {{stream.likes-count || 0}}
+              %i.fi-share
+                {{stream.restreams-count || 0}}
+  .blurlayer
+  .search
+    %input#mainsearch(type='text' ng-model='search' placeholder='@, # or Location')
 
-            .row.footer
-              .small-4.columns
-                {{stream.broadcaster.name}}    
-              .small-4.columns
-                {{stream.location}}    
-              .small-4.columns
-                %i.fi-torsos-all
-                  {{stream.watchers_count}}
 
 
  

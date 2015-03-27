@@ -10,100 +10,116 @@
 # ])
 
 @meerkatSearchCtrl = ($scope, $window, Restangular) ->
-  videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf" 
-  
-  # videojs.options.techOrder = ["hls","flash"]
-  $scope.page = 1
-  $scope.search = ''
-  $scope.allowRefresh = true
-  $scope.streams = null
+  angular.element(document).ready ->
+    videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf" 
+    
+    videojs.options.techOrder = ["hls","flash"]
 
-  $scope.setId = (id) ->
+    $scope.page = 1
+    $scope.search = ''
+    $scope.allowRefresh = true
+    $scope.streams = null
+    $scope.searchstring = ''
+    $scope.keyup = (keyevent) ->
+      console.log('keyup', keyevent);
+      return
+    $scope.setId = (id) ->
 
-    #videojs(id).ready ->
-    ##  videoPlayer = this
-    #  videoPlayer.on 'error', ->
-    #    # error event listener
-    ##    # dispose the old player and its HTML
-    #   videoPlayer.dispose()
-    #    # re-add the <video> element to the container
-    #    jQuery('.video-container').append '<video id="' + id + '" controls autoplay class="video-js vjs-default-skin" preload="auto" data-setup="{}">' + '<source src="video.mp4" type="video/mp4" /></video>'
-    ##    # force Flash as the only playback option
-    #    videojs(id, 'techOrder': [ 'flash' ]).ready ->
-    #      videoPlayer = this
-    #      return
-    #    return
-    #  return
+      #videojs(id).ready ->
+      ##  videoPlayer = this
+      #  videoPlayer.on 'error', ->
+      #    # error event listener
+      ##    # dispose the old player and its HTML
+      #   videoPlayer.dispose()
+      #    # re-add the <video> element to the container
+      #    jQuery('.video-container').append '<video id="' + id + '" controls autoplay class="video-js vjs-default-skin" preload="auto" data-setup="{}">' + '<source src="video.mp4" type="video/mp4" /></video>'
+      ##    # force Flash as the only playback option
+      #    videojs(id, 'techOrder': [ 'flash' ]).ready ->
+      #      videoPlayer = this
+      #      return
+      #    return
+      #  return
 
 
 
-    unless /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      setTimeout (->
-        videojs(id)
-        return
-      ), 2000
+      unless /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        setTimeout (->
+          console.log "First time"
+          videojs(id)
+          return
+        ), 3000
+        return id
       return id
-    return id
-  # Check every 500ms to see if ID is set, once it is we can
+    # Check every 500ms to see if ID is set, once it is we can
 
-  Restangular.all("api/streams").getList().then (data) ->
-    console.log data
-    $scope.streams = data
-    return
+    Restangular.all("api/streams").getList().then (data) ->
+      console.log data
+      $scope.streams = data
+      $scope.$apply
+      return
 
-  angular.element($window).bind 'scroll', ->
-    windowHeight = if 'innerHeight' in window then window.innerHeight else document.documentElement.offsetHeight
-    body = document.body
-    html = document.documentElement
-    docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
-    windowBottom = windowHeight + window.pageYOffset
-    # If user pulls all the way to the top, refresh the list
-    if window.pageYOffset <= -5 && $scope.allowRefresh
-      $scope.allowRefresh = false
-      Restangular.all("api/streams").getList().then (data) ->
-        if data.length > 0
-          if $scope.streams == undefined || $scope.streams.length == 0
-            $scope.streams = data
-          else
-            # Make sure the data isn't already added
-            # Loop through new data in reverse (newest will be at the front of our result) and compare to existing
-            for d in data.reverse()
-              match = false
-              for o in $scope.streams
-                if o.stream_identifier == d.stream_identifier
-                  match = true
-                  break
-              if match == false
-                $scope.streams.unshift(d)
-          $scope.$apply
-        $scope.allowRefresh = true
-        return
-    if windowBottom >= (docHeight - 100)
-      # Only bring in next page when the size of the array indciates we need to
-      if ($scope.streams.length / 4) == $scope.page
-        $scope.page += 1
-        Restangular.all("api/streams").getList({page: $scope.page, q:$scope.search}).then (data) ->
+    angular.element($window).bind 'scroll', ->
+      windowHeight = if 'innerHeight' in window then window.innerHeight else document.documentElement.offsetHeight
+      body = document.body
+      html = document.documentElement
+      docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight)
+      windowBottom = windowHeight + window.pageYOffset
+      # If user pulls all the way to the top, refresh the list
+      if window.pageYOffset <= -5 && $scope.allowRefresh
+        $scope.allowRefresh = false
+        Restangular.all("api/streams").getList().then (data) ->
           if data.length > 0
             if $scope.streams == undefined || $scope.streams.length == 0
               $scope.streams = data
             else
-              Array.prototype.push.apply($scope.streams,data)
+              # Make sure the data isn't already added
+              # Loop through new data in reverse (newest will be at the front of our result) and compare to existing
+              for d in data.reverse()
+                match = false
+                for o in $scope.streams
+                  if o.stream_identifier == d.stream_identifier
+                    match = true
+                    break
+                if match == false
+                  $scope.streams.unshift(d)
             $scope.$apply
+          $scope.allowRefresh = true
+          return
+      if windowBottom >= (docHeight - 100)
+        # Only bring in next page when the size of the array indciates we need to
+        if $scope.streams != null && ($scope.streams.length / 12) >= $scope.page - 1
+          $scope.page += 1
+          Restangular.all("api/streams").getList({page: $scope.page, q:$scope.search}).then (data) ->
+            if data.length > 0
+              if $scope.streams == undefined || $scope.streams.length == 0
+                $scope.streams = data
+              else
+                for d in data.reverse()
+                  match = false
+                  for o in $scope.streams
+                    if o.stream_identifier == d.stream_identifier
+                      match = true
+                      break
+                  if match == false
+                    $scope.streams.push(d)
+                    $scope.$apply 
             return
 
-  $scope.$watch 'search', (search) ->
-    if search.length > 2
-      $scope.page = 1
-      Restangular.all("api/streams").getList({q: search}).then (data) ->
-        $scope.streams = data
-        $scope.$apply
-        return
-    if search.length == 0
-      $scope.page = 1
-      Restangular.all("api/streams").getList().then (data) ->
-        $scope.streams = data
-        $scope.$apply
-        return
+    $scope.$watch 'search', (search) ->
+      setTimeout ( ->
+        if search.length > 2 && $scope.recent_key_pressed == false
+          $scope.page = 1
+          Restangular.all("api/streams").getList({q: search}).then (data) ->
+            $scope.streams = data
+            $scope.$apply
+            return
+        if search.length == 0 
+          $scope.page = 1
+          Restangular.all("api/streams").getList().then (data) ->
+            $scope.streams = data
+            $scope.$apply
+            return
+      ), 3000
 
   #   stream_length = stream.length - 1
   #   if stream.length > 20

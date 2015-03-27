@@ -7,42 +7,82 @@
   font-size: 30px;
   color: white;
   margin: 20px;
-  margin-bottom: 100px;
+	line-height: 1.12;
+}
+
+.comment {
+	text-align: center;
+}
+
+.credit {
+	float: right;
+	padding-right: 10px;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+.search {
+	position: fixed;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  z-index: 100;
+  input {	
+    height: 75px;
+  	font-size: 28px;
+  }
 }
 .panel {
-	color: #457a83!important;
+	color: black!important;
 	border-style: none!important;
 	z-index: -1;
 	height: auto;
 	max-width: 450px;
-	font-size: 18px;
-	i {
-		font-size: 32px!important;
-	}
+	font-size: 12px;
 	.profile {		
 		padding-top: 10px;
 		color: #457a83;
+		min-height: 69px;
+		.image {
+			float: left;
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+		.caption {
+			//white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  width:70%;
+		}
 		img {
 			width: 50px;
 		}
-
 	}
 	padding: 0px;
 	background-color: white;
 	color: white!important;
 	.head {
 		background-color: #54a2d8;
-		padding-top: 10px;
-		height: 50px;
-		color: #457a83;
+		padding-top: 2px;
+		height: 30px;
+		color: #457a83;	  
 		p {
 			color: white;
 			text-align: left;
 			font-weight: 100;
-			height: 50px;
+			height: 30px;
 			padding-left: 5px;
 			margin-bottom: 0px;
 			float: left;
+			white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  width: 80%;
 		}
 		.twicon {
 		  float: right;
@@ -52,10 +92,20 @@
 				color: white!important;
 			}
 		}
+		i {
+			font-size: 22px;
+		}
 	}
 	.content {
-		padding: 15px;
- 	 	margin-top: 40px
+	  padding-right: 15px;
+  	padding-left: 15px;
+	}
+	.follow {
+	  background-color: #ffe200;
+		color: black;
+		font-weight: 700;
+		text-align: center;
+		min-height: 25px;
 	}
 	#border-color: black;
 	.activity {
@@ -70,6 +120,24 @@
 
 	h2 {
 		overflow: hidden;
+	}
+	.footer {
+		color: #457a83;
+		font-size: 12px;
+		padding: 5px;
+		font-style: normal;
+		margin: 2px;
+			i {
+			font-size: 14px!important;
+		}
+		.location {
+			min-height: 18px;
+			text-align: center;
+			white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  width: 100%;
+		}
 	}
 }	
 
@@ -110,12 +178,4 @@ nav {
 	img {
 	  float:right!important;
 	}
-}
-
-.footer {
-	color: #457a83;
-	font-size: 12px;
-	padding: 5px;
-	font-style: normal;
-	margin: 2px;
 }
