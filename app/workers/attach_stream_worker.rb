@@ -68,7 +68,7 @@ class AttachStreamWorker
   	begin
 			result = RestClient.get "https://api.periscope.tv/api/v2/getAccessPublic?token=#{stream_id}"
 			parsed_summary = JSON.parse(result)
-			playlist = parsed_summary["his_url"]
+			playlist = parsed_summary["hls_url"]
 			return if Stream.where(stream_identifier: stream_id).first.present?
 			# Remove id before the creation because we use Mongo ID's instead
 			feed.stream = Stream.create(stream_type: "periscope",

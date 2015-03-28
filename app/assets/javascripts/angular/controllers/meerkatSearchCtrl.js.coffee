@@ -11,9 +11,7 @@
 
 @meerkatSearchCtrl = ($scope, $window, Restangular) ->
   angular.element(document).ready ->
-    videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf" 
     
-    videojs.options.techOrder = ["flash","hls"]
 
     $scope.page = 1
     $scope.search = ''
@@ -26,6 +24,8 @@
       console.log stream
       console.log event.currentTarget 
       if event.currentTarget.children[0].tagName == "IMG"
+        videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf" 
+        videojs.options.techOrder = ["flash","hls"]
         event.currentTarget.innerHTML = "
           <video autoplay=false id='"+stream.stream_identifier+"' class='video-js vjs-default-skin' controls=true height='255' width='100%'>
             <source src='"+stream.playlist+"' type='video/mp4'></source>
