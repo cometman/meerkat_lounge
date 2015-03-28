@@ -18,11 +18,14 @@
   %section.main
     .top.text-center
       %ul.tag
-        %li.alltype.tag(ng-class="typeSelection == 'all' ? 'selected' : ''" ng-click="typeSelection = 'all'")
+        %li.tag.searchtop
+          %i.fi-magnifying-glass
+        %li.alltype.tag(ng-class="typeSelection == 'all' ? 'selected' : ''" ng-click="selectionClick('all')")
           all
-        %li.meerkattype.tag(ng-class="typeSelection == 'meerkat' ? 'selected' : ''" ng-click="typeSelection = 'meerkat'")
+        .divider.small-only
+        %li.meerkattype.tag(ng-class="typeSelection == 'meerkat' ? 'selected' : ''" ng-click="selectionClick('meerkat')")
           meerkat
-        %li.periscopetype.tag(ng-class="typeSelection == 'periscope' ? 'selected' : ''" ng-click="typeSelection = 'periscope'")
+        %li.periscopetype.tag(ng-class="typeSelection == 'periscope' ? 'selected' : ''" ng-click="selectionClick('periscope')")
           periscope
     %ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4
       %li.small-centered(ng-repeat="stream in streams")
@@ -58,6 +61,7 @@
                 {{stream.likes-count || 0}}
               %i.fi-share
                 {{stream.restreams-count || 0}}
+
   .blurlayer
   .search
     %input#mainsearch(type='text' ng-model='search' placeholder='@, # or Location')

@@ -16,13 +16,13 @@ class Api::StreamsController < ApplicationController
     streams = Stream.all#where(status: "live")
     search = params[:q]
     type = params[:t]
-    if type.blank? || type == ""
+    if type.blank? || type == "" || type == "all"
       type = "meerkat|periscope"
     end
     if search.present? && search != ""
-      streams = streams.any_of({"broadcaster.name" => /#{search}/i}, {"caption" => /#{search}/i}, {"influencers" => /#{search}/i}, {"location" => /#{search}/i}).where(type: type).page(page).per(number_of_streams).order_by(order_by + ' ' + direction)
+      streams = streams.any_of({"broadcaster.name" => /#{search}/i}, {"caption" => /#{search}/i}, {"influencers" => /#{search}/i}, {"location" => /#{search}/i}).where(stream_type: /#{type}/).page(page).per(number_of_streams).order_by(order_by + ' ' + direction)
     else
-      streams = streams.page(page).per(number_of_streams).order_by(order_by + ' ' + direction)
+      streams = streams.where(stream_type: /#{type}/).page(page).per(number_of_streams).order_by(order_by + ' ' + direction)
     end
     
     render :json => streams.map(&:as_document)

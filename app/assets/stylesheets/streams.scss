@@ -9,7 +9,9 @@
   margin: 20px;
 	line-height: 1.12;
 }
-
+.divider {
+	margin-bottom: 25px;
+}
 .top {
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -68,6 +70,7 @@
   }
 }
 .panel {
+  margin: 0 auto;
 	.name {
 		padding: 5px;
 	}
@@ -75,7 +78,7 @@
 	border-style: none!important;
 	z-index: -1;
 	height: auto;
-	max-width: 450px;
+	max-width: 250px;
 	font-size: 12px;
 	.profile {		
 		padding-top: 10px;

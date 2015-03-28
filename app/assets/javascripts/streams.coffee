@@ -41,7 +41,30 @@ angular.element(document).ready ->
 				startRemove()
 			), 3000
 		return
-
+	$(".searchtop").click ->
+		angular.element(".main").scope().recent_key_pressed = true
+		if $("#mainsearch").css('display') == "none"
+			is_showing = true
+			$(".main").css('-webkit-filter', "blur(3px)")
+			$(".main").css('-moz-filter', "blur(3px)")
+			$("#mainsearch")[0].value = ""
+			# Disable scrolling while searching
+			$("section").addClass('stop-scrolling')
+			$("#mainsearch").show()
+			#angular.element(".main").scope().search += String.fromCharCode(e.keyCode);
+		else if is_showing == true
+			$("#mainsearch").hide()
+			is_showing = false
+			$(".main").removeAttr('style')
+			$("section").removeClass('stop-scrolling')
+			return
+		if is_showing == true
+			$("#mainsearch").focus()
+			setTimeout ( ->
+				angular.element(".main").scope().recent_key_pressed = false
+				startRemove()
+			), 3000
+		return
 	
 #-webkit-filter: blur(3px);
 #-moz-filter: blur(3px);

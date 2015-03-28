@@ -34,6 +34,12 @@
         return
 
 
+    $scope.selectionClick = (selection) ->
+      $scope.typeSelection = selection
+      Restangular.all("api/streams").getList({q: $scope.search, t: $scope.typeSelection}).then (data) ->
+        $scope.streams = data
+        $scope.$apply
+        return
 
     $scope.keyup = (keyevent) ->
       console.log('keyup', keyevent);
@@ -82,7 +88,7 @@
       # If user pulls all the way to the top, refresh the list
       if window.pageYOffset <= -5 && $scope.allowRefresh
         $scope.allowRefresh = false
-        Restangular.all("api/streams").getList().then (data) ->
+        Restangular.all("api/streams").getList({q:$scope.search, t: $scope.typeSelection}).then (data) ->
           if data.length > 0
             if $scope.streams == undefined || $scope.streams.length == 0
               $scope.streams = data
@@ -104,7 +110,7 @@
         # Only bring in next page when the size of the array indciates we need to
         if $scope.streams != null && ($scope.streams.length / 12) >= $scope.page - 1
           $scope.page += 1
-          Restangular.all("api/streams").getList({page: $scope.page, q:$scope.search}).then (data) ->
+          Restangular.all("api/streams").getList({page: $scope.page, q:$scope.search, t:$scope.typeSelection}).then (data) ->
             if data.length > 0
               if $scope.streams == undefined || $scope.streams.length == 0
                 $scope.streams = data
@@ -120,11 +126,12 @@
                     $scope.$apply 
             return
 
+
     $scope.$watch 'search', (search) ->
       setTimeout ( ->
         if search.length > 2 && $scope.recent_key_pressed == false
           $scope.page = 1
-          Restangular.all("api/streams").getList({q: search}).then (data) ->
+          Restangular.all("api/streams").getList({q: search, t: $scope.typeSelection}).then (data) ->
             $scope.streams = data
             $scope.$apply
             return
