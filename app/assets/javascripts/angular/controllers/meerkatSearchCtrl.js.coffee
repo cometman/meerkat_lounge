@@ -27,7 +27,7 @@
         videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf" 
         videojs.options.techOrder = ["flash","hls"]
         event.currentTarget.innerHTML = "
-          <video autoplay=false id='"+stream.stream_identifier+"' class='video-js vjs-default-skin' controls=true height='255' width='100%'>
+          <video autoplay=true id='"+stream.stream_identifier+"' class='video-js vjs-default-skin' controls=true height='255' width='100%'>
             <source src='"+stream.playlist+"' type='video/mp4'></source>
           </video>"
         videojs(stream.stream_identifier)

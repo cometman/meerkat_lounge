@@ -46,7 +46,7 @@
             .row
               .innerContainer(ng-click="streamClick($event, stream)")
                 %img(src="{{stream.cover}}" height=255 width="100%")
-          %a(href="http://meerkatapp.co/{{stream.broadcaster.name}}" target="_blank")
+          %a(ng-show="stream.stream_type == 'meerkat'" href="http://meerkatapp.co/{{stream.broadcaster.name}}" target="_blank")
             .follow(ng-class="stream.stream_type == 'meerkat' ? 'meerkat' : 'periscope'")
               Follow
           .footer
