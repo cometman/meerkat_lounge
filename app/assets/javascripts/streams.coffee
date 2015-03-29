@@ -62,9 +62,5 @@ angular.element(document).ready ->
 				angular.element(".main").scope().recent_key_pressed = false
 			), 3000
 		return
-	$(".blurlayer").click ->
-		$("#mainsearch").hide()
-		$(".searchsubmit").hide()
-		return
 #-webkit-filter: blur(3px);
 #-moz-filter: blur(3px);
