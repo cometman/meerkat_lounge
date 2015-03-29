@@ -20,8 +20,8 @@
     $scope.searchstring = ''
     $scope.typeSelection = 'all'
 
-    videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf" 
-    # videojs.options.techOrder = ["flash","hls"]
+    # videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf" 
+    
 
     $scope.streamClick = (event, stream) ->
       console.log stream
@@ -31,8 +31,9 @@
           <video autoplay=true preload='auto' id='"+stream.stream_identifier+"' class='video-js vjs-default-skin' controls=true height='255' width='100%'>
             <source src='"+stream.playlist+"' type='video/mp4'></source>
           </video>"
-
-        videojs(stream.stream_identifier, {techOrder:["flash", "hls"]})
+        videojs.options.flash.swf = "http://www.flashls.org/videojs/video-js.swf" 
+        videojs.options.techOrder = ["flash","hls"]
+        videojs(stream.stream_identifier)
         return
 
 
