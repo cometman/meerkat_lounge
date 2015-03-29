@@ -41,6 +41,12 @@ class Stream
   embeds_one :broadcaster
   has_one :feed
 
+  index({ caption: 1 }, { sparse: true })
+  index({ created_at: -1 })
+  index({ stream_type: 1 })
+  index({ location: 1 }, { sparse: true })
+  index({ "broadcaster.name" => 1 }, { sparse: true })
+
   def update_stream
   	UpdateStreamStatus.perform_async(self.stream_identifier)
   end
