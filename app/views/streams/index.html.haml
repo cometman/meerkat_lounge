@@ -17,12 +17,12 @@
            
   %section.main
     .top.text-center
+      .tag.searchtop
+        %i.fi-magnifying-glass
+      .divider
       %ul.tag
-        %li.tag.searchtop
-          %i.fi-magnifying-glass
         %li.alltype.tag(ng-class="typeSelection == 'all' ? 'selected' : ''" ng-click="selectionClick('all')")
           all
-        .divider.small-only
         %li.meerkattype.tag(ng-class="typeSelection == 'meerkat' ? 'selected' : ''" ng-click="selectionClick('meerkat')")
           meerkat
         %li.periscopetype.tag(ng-class="typeSelection == 'periscope' ? 'selected' : ''" ng-click="selectionClick('periscope')")
