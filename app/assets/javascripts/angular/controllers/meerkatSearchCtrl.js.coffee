@@ -31,6 +31,7 @@
           <video autoplay=true id='"+stream.stream_identifier+"' class='video-js vjs-default-skin' controls=true height='255' width='100%'>
             <source src='"+stream.playlist+"' type='video/mp4'></source>
           </video>"
+        
         videojs(stream.stream_identifier)
         return
 
