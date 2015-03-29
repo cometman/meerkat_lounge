@@ -7,13 +7,8 @@ angular.element(document).ready ->
 	is_showing = false
 	angular.element(".main").scope().recent_key_pressed = false
 	$("#mainsearch").hide()
+	$(".searchsubmit").hide()
 
-	startRemove = ->
-		if angular.element(".main").scope().recent_key_pressed == false
-			$(".main").removeAttr('style')
-			$("#mainsearch").hide()
-			$("section").removeClass('stop-scrolling')
-			console.log "hidding no recent key"
 
 	$(document).keydown (e) ->
 		console.log angular.element(".main").scope().search
@@ -26,9 +21,11 @@ angular.element(document).ready ->
 			# Disable scrolling while searching
 			$("section").addClass('stop-scrolling')
 			$("#mainsearch").show()
+			$(".searchsubmit").show()
 			#angular.element(".main").scope().search += String.fromCharCode(e.keyCode);
 		else if is_showing == true && e.keyCode == 13
 			$("#mainsearch").hide()
+			$(".searchsubmit").hide()
 			is_showing = false
 			$(".main").removeAttr('style')
 			$("section").removeClass('stop-scrolling')
@@ -38,7 +35,6 @@ angular.element(document).ready ->
 			$("#mainsearch").focus()
 			setTimeout ( ->
 				angular.element(".main").scope().recent_key_pressed = false
-				startRemove()
 			), 3000
 		return
 	$(".searchtop").click ->
@@ -51,9 +47,11 @@ angular.element(document).ready ->
 			# Disable scrolling while searching
 			$("section").addClass('stop-scrolling')
 			$("#mainsearch").show()
+			$(".searchsubmit").show()
 			#angular.element(".main").scope().search += String.fromCharCode(e.keyCode);
 		else if is_showing == true
 			$("#mainsearch").hide()
+			$(".searchsubmit").hide()
 			is_showing = false
 			$(".main").removeAttr('style')
 			$("section").removeClass('stop-scrolling')
@@ -62,7 +60,6 @@ angular.element(document).ready ->
 			$("#mainsearch").focus()
 			setTimeout ( ->
 				angular.element(".main").scope().recent_key_pressed = false
-				startRemove()
 			), 3000
 		return
 	
