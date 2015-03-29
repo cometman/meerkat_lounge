@@ -134,7 +134,6 @@
 
 
     $scope.$watch 'search', (search) ->
-      debugger
       setTimeout ( ->
         if search.length > 2 && $scope.recent_key_pressed == false
           $scope.page = 1

@@ -46,7 +46,7 @@
           .content   
             .row
               .innerContainer(ng-click="streamClick($event, stream)")
-                %img(src="{{stream.cover}}" width="100%")
+                %img(src="{{stream.cover}}" width="100%" onerror="this.src='black_image.jpg'")
           %a(ng-show="stream.stream_type == 'meerkat'" href="http://meerkatapp.co/{{stream.broadcaster.name}}" target="_blank")
             .follow(ng-class="stream.stream_type == 'meerkat' ? 'meerkat' : 'periscope'")
               Follow
