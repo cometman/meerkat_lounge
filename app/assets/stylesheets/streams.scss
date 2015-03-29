@@ -85,6 +85,7 @@
 		color: #457a83;
 		min-height: 69px;
 		.image {
+			overflow: hidden;
 			float: left;
 			padding-left: 5px;
 			padding-right: 5px;
@@ -98,6 +99,8 @@
 		img {
 			width: 50px;
 		}
+
+
 	}
 	padding: 0px;
 	background-color: white;
@@ -232,4 +235,9 @@ nav {
 	img {
 	  float:right!important;
 	}
+}
+
+.innerContainer {
+	overflow: hidden;
+	max-height: 250px;
 }

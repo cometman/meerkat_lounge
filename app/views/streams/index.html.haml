@@ -33,9 +33,10 @@
           .head(ng-class="stream.stream_type == 'meerkat' ? 'meerkat' : 'periscope'")
             .name
               {{'@' + stream.broadcaster.name}}
-              .twicon
-                %a(href="http://twitter.com/{{stream.broadcaster.name}}" target="_blank")
-                %i.fi-social-twitter 
+              
+              %a(href="http://twitter.com/{{stream.broadcaster.name}}" target="_blank")
+                .twicon
+                  %i.fi-social-twitter 
           .profile
             .image
               %img(ng-src="{{stream.broadcaster.image}}")
@@ -45,7 +46,7 @@
           .content   
             .row
               .innerContainer(ng-click="streamClick($event, stream)")
-                %img(src="{{stream.cover}}" height=255 width="100%")
+                %img(src="{{stream.cover}}" width="100%")
           %a(ng-show="stream.stream_type == 'meerkat'" href="http://meerkatapp.co/{{stream.broadcaster.name}}" target="_blank")
             .follow(ng-class="stream.stream_type == 'meerkat' ? 'meerkat' : 'periscope'")
               Follow
