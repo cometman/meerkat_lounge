@@ -3,14 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .title {
-  text-align: center;
-  font-size: 30px;
+  font-size: 22px;
   color: white;
-  margin: 20px;
 	line-height: 1.12;
 }
 .divider {
 	margin-bottom: 25px;
+}
+.search-top {
+	background-color: #333333!important;
+	border-style: solid;
+  border-color: white!important;
+  border-width: 1px;
+  border-radius: 3px;
 }
 .top {
 	margin-top: 20px;
@@ -57,17 +62,7 @@
 }
 
 .search {
-	position: fixed;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  padding-left: 10%;
-  padding-right: 10%;
-  z-index: 100;
-  input {	
-    height: 45px;
-  	font-size: 18px;
-  }
+
 }
 .panel {
   margin: 0 auto;
@@ -213,17 +208,12 @@ section {
 
 nav {
 	z-index: 100;
-	input {
-		margin: 10px !important;
-	}
+
 	a {
 		color: white !important;
 	}
 	img {
-		height: 50px;
-		float: left;
-		margin-top: 10px;
-		margin-left: 5px;
+	
 	}
 }
 
@@ -240,10 +230,4 @@ nav {
 .innerContainer {
 	overflow: hidden;
 	max-height: 250px;
-}
-.searchsubmit {
-	position: absolute;
-	bottom: 50%;
-	right: 12%;
-	font-size: 22px;
 }

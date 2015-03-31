@@ -132,22 +132,28 @@
                     $scope.$apply 
             return
 
-
-    $scope.$watch 'search', (search) ->
+    $scope.searchSubmit = ->
       setTimeout ( ->
-        if search.length > 2 && $scope.recent_key_pressed == false
+        if $scope.search.length > 2 #&& $scope.recent_key_pressed == false
           $scope.page = 1
-          Restangular.all("api/streams").getList({q: search, t: $scope.typeSelection}).then (data) ->
+          Restangular.all("api/streams").getList({q: $scope.search, t: $scope.typeSelection}).then (data) ->
             $scope.streams = data
             $scope.$apply
             return
-        if search.length == 0 
+        if $scope.search.length == 0 
           $scope.page = 1
           Restangular.all("api/streams").getList().then (data) ->
             $scope.streams = data
             $scope.$apply
             return
       ), 3000
+
+    $scope.resetFilters = ->
+      $scope.typeSelection = 'all'
+      Restangular.all("api/streams").getList().then (data) ->
+        $scope.streams = data
+        $scope.$apply
+        return
 
   #   stream_length = stream.length - 1
   #   if stream.length > 20

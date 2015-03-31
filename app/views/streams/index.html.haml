@@ -1,32 +1,54 @@
 
 .row{"ng-controller" => "meerkatSearchCtrl", "ng-keyup" => "keyup($event)"}
   %nav.top-bar{"data-topbar" => "", :role => "navigation"}
-    .center
-      .show-for-medium-up.tinylogo
-        %img(src="/logo.png" height=50)
-      .title
-        Meerkat Lounge
-        .credit
-          %p.small-text-center
-            %a{:href => "http://socialrest.com", target: "_blank"}by @socialrest    
-        .comment
-          %p.small-text-center
-            search and browse live streams.    
-      
-     
+    %ul.title-area
+      %li.title
+        %a(ng-click="window.location.reload()")
+          %img(src="llama_logo.jpg" width=45)
+          Llama Streams
+
+      / Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone
+      %li.toggle-topbar.menu-icon
+        %a{:href => "#"}
+          %span Menu
+    %section.top-bar-section
+      / Right Nav Section
+      %ul.right
+        %li.has-dropdown
+          %a{:href => "#"} 
+            %i.fi-filter
+            &nbsp;Filter
+          %ul.dropdown
+            %li.has-dropdown
+              %a(href="#")Video type
+              %ul.dropdown
+                %li
+                  %a(ng-class="typeSelection == 'all' ? 'selected' : ''" ng-click="selectionClick('all')")
+                    all 
+                    %i.fi-check(ng-show="typeSelection == 'all'")
+                %li
+                  %a(ng-class="typeSelection == 'meerkat' ? 'selected' : ''" ng-click="selectionClick('meerkat')")
+                    meerkat
+                    %i.fi-check(ng-show="typeSelection == 'meerkat'")
+                %li
+                  %a(ng-class="typeSelection == 'periscope' ? 'selected' : ''" ng-click="selectionClick('periscope')")
+                    periscope
+                    %i.fi-check(ng-show="typeSelection == 'periscope'")
+                %li.divider
+            %li
+              %a(ng-click="resetFilters()")Reset
+        / %li.active
+        /   %a{:href => "mailto::info@socialrest.me"}Help
+
+      %ul.right
+        %li
+          %input#mainsearch(type='text' ng-model='search' placeholder='Search streams')/
+        %li
+          %a.search-top.button.expand(ng-click="searchSubmit()")
+            Search
+
            
   %section.main
-    .top.text-center
-      .tag.searchtop
-        %i.fi-magnifying-glass
-      .divider
-      %ul.tag
-        %li.alltype.tag(ng-class="typeSelection == 'all' ? 'selected' : ''" ng-click="selectionClick('all')")
-          all
-        %li.meerkattype.tag(ng-class="typeSelection == 'meerkat' ? 'selected' : ''" ng-click="selectionClick('meerkat')")
-          meerkat
-        %li.periscopetype.tag(ng-class="typeSelection == 'periscope' ? 'selected' : ''" ng-click="selectionClick('periscope')")
-          periscope
     %ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4
       %li.small-centered(ng-repeat="stream in streams")
         .panel.small-centered.text-left
@@ -63,11 +85,11 @@
               %i.fi-share
                 {{stream.restreams-count || 0}}
 
-  .blurlayer
-  .search
-    %input#mainsearch(type='text' ng-model='search' placeholder='@, # or Location')
-    .searchsubmit
-      %i.fi-magnifying-glass(onclick="$('.searchtop').click()")
+  / .blurlayer
+  / .search
+  /   %input#mainsearch(type='text' ng-model='search' placeholder='@, # or Location')
+  /   .searchsubmit
+  /     %i.fi-magnifying-glass(onclick="$('.searchtop').click()")
 
 
 
