@@ -3,7 +3,7 @@
   %nav.top-bar{"data-topbar" => "", :role => "navigation"}
     %ul.title-area
       %li.title
-        %a(ng-click="window.location.reload()")
+        %a(ng-click="window.location.reload(true)")
           %img(src="llama_logo.jpg" width=45)
           Llama Streams
 
@@ -52,6 +52,10 @@
     .welcome.text-center
       .title
         Find live streams curated by a team of llamas.
+      %p.sub-text
+        A project of passion, puns and pleasure by 
+        %a(href="http://socialrest.com")
+          @SocialRest
       .row
         .small-5.columns.text-right
           .fb-share-button{"data-href" => "http://llamastreams.com", "data-layout" => "button"}
