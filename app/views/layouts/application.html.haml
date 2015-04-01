@@ -4,22 +4,22 @@
     %meta{ :charset => "utf-8" }
 
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
-    %title Meerkat Lounge
-    %meta{:content => "Find, Browse and Stream Live Meerkat.", :name => "description"}/
-    %meta{:content => "Find, Browse and Stream Live Meerkat", :name => "twitter:card"}
+    %title Llama Streams
+    %meta{:content => "Find, browse and stream live video. And a pinch of llama.", :name => "description"}/
+    %meta{:content => "Find, browse and stream live video. And a pinch of llama.", :name => "twitter:card"}
     %meta{:content => "@clay_selby", :name => "twitter:site"}
-    %meta{:content => "Meerkat Lounge", :name => "twitter:title"}
-    %meta{:content => "Find, Browse and Stream Live Meerkat", :name => "twitter:description"}
+    %meta{:content => "LLama Streams", :name => "twitter:title"}
+    %meta{:content => "Find, browse and stream live video. And a pinch of llama.", :name => "twitter:description"}
     %meta{:content => "@clay_selby", :name => "twitter:creator"}
-    %meta{:content => "http://www.meerkatlounge.com/logo.png", :name => "twitter:image"}
-    %meta{:content => "Meerkat Lounge", :property => "og:title"}/
+    %meta{:content => "http://www.llamastreams.com/llama_logo.png", :name => "twitter:image"}
+    %meta{:content => "LLama Streams", :property => "og:title"}/
     %meta{:content => "article", :property => "og:type"}/
-    %meta{:content => "http://www.meerkatlounge.com/", :property => "og:url"}/
-    %meta{:content => "http://meerkatlounge.com/logo.png", :property => "og:image"}/
-    %meta{:content => "Find, Browse and Stream Live Meerkat", :property => "og:description"}/
-    %meta{:content => "Meerkat Lounge", :property => "og:site_name"}/
+    %meta{:content => "http://www.llamastreams.com/", :property => "og:url"}/
+    %meta{:content => "http://llamastreams.com/llama_logo.png", :property => "og:image"}/
+    %meta{:content => "Find, browse and stream live video. And a pinch of llama.", :property => "og:description"}/
+    %meta{:content => "LLama Streams", :property => "og:site_name"}/
 
-    %title= content_for?(:title) ? yield(:title) : "Meerkat Lounge"
+    %title= content_for?(:title) ? yield(:title) : "LLama Streams"
     = stylesheet_link_tag "application"
     = javascript_include_tag "vendor/modernizr"
     %link{:href => "//vjs.zencdn.net/4.12/video-js.css", :rel => "stylesheet"}
@@ -44,6 +44,15 @@
     = analytics_init if Rails.env.production?
 
   %body{"ng-app" => "app.meerkatSearch"}
+    #fb-root
+    :javascript
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=217566221638232&version=v2.3";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
     %section
       .row.center
         = yield

@@ -6,6 +6,10 @@
   font-size: 22px;
   color: white;
 	line-height: 1.12;
+	padding-bottom: 15px;
+}
+.maincontent {
+	padding-top: 15px;
 }
 .divider {
 	margin-bottom: 25px;
@@ -230,4 +234,7 @@ nav {
 .innerContainer {
 	overflow: hidden;
 	max-height: 250px;
+}
+.social-share {
+	margin: 10px;
 }

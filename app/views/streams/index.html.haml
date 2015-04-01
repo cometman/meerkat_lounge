@@ -49,6 +49,17 @@
 
            
   %section.main
+    .welcome.text-center
+      .title
+        Find live streams curated by a team of llamas.
+      .row
+        .small-5.columns.text-right
+          .fb-share-button{"data-href" => "http://llamastreams.com", "data-layout" => "button"}
+        .small-5.columns.text-left
+          %a.twitter-share-button{"data-count" => "none", "data-dnt" => "true", "data-hashtags" => "llamastreams", "data-related" => "socialrest", "data-text" => "A team of llamas just helped me find, browse and stream live videos.", "data-url" => "http://llamastreams.com", :href => "https://twitter.com/share"} Tweet
+          :javascript
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  %section.maincontent
     %ul.small-block-grid-1.medium-block-grid-3.large-block-grid-4
       %li.small-centered(ng-repeat="stream in streams")
         .panel.small-centered.text-left
