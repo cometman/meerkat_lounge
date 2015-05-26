@@ -18,8 +18,8 @@ integration:
       username: xena2014
       password: password2014
       hosts:
-        - c996.candidate.20.mongolayer.com:10996
-        - c870.candidate.16.mongolayer.com:10870
+        - candidate.20.mongolayer.com:10996
+        - candidate.16.mongolayer.com:10870
       options:
         # In the test environment we lower the retries and retry interval to
         # low amounts for fast failures.
@@ -36,12 +36,12 @@ production:
       username: xena2014
       password: password2014
       hosts:
-        - c996.candidate.20.mongolayer.com:10996
-        - c870.candidate.16.mongolayer.com:10870
+        - candidate.20.mongolayer.com:10996
+        - candidate.16.mongolayer.com:10870
       options:
         # In the test environment we lower the retries and retry interval to
         # low amounts for fast failures.
-        pool_size: 999
+        pool_size: 50
         pool_timeout: 10
         retry_interval: 1
         timeout: 15
